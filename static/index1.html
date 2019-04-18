@@ -8,31 +8,59 @@
 <body>
 
 
-<button id="sendBtn">发送消息</button>
+    <button id="sendBtn">发送消息</button>
 
-<button id="leaveBtn">离开</button>
+    <button id="leaveBtn">离开</button>
 
 </body>
 <script type="text/javascript" src="./js/socket.io.js"></script>
+
+
+
+<form role="form" id="chat_form" onsubmit="sendMessage(); return false;">
+    <div class="form-group">
+        <input class="form-control" type="text" id="message" name="message" placeholder="Type text to echo in here"
+            value="" autofocus />
+    </div>
+    <button type="button" id="send" class="btn btn-primary" onclick="sendMessage();">
+        Send Message
+    </button>
+</form>
+
+
+
+
+
+
 <script type="text/javascript">
-    var socket=io.connect('http://3000.grcb2295.l3xy9scq.e2ea52.grapps.cn/'),//与服务器进行连接
-        send=document.getElementById('sendBtn'),
-        leave=document.getElementById('leaveBtn'),
-        data={'roomId':"123456"};
-    send.onclick=function(){
+    var socket = io.connect('http://3000.grcb2295.l3xy9scq.e2ea52.grapps.cn/'),//与服务器进行连接
+        send = document.getElementById('sendBtn'),
+        leave = document.getElementById('leaveBtn'),
+        data = { 'roomId': "123456" };
+
+    send.onclick = function () {
         socket.emit('hi', data);
     }
 
-    leave.onclick=function(){
-        window.location.href="about:blank";
+    leave.onclick = function () {
+        window.location.href = "about:blank";
         window.close()
         socket.emit('leave', 'leave');
     }
 
     //接收来自服务端的信息事件c_hi
-    socket.on('c_hi',function(msg){
+    socket.on('c_hi', function (msg) {
         alert(msg)
     })
+
+    function sendMessage() {
+
+        data.content = document.getElementById('message');
+        socket.emit('hi', data);
+
+
+    }
+
 
     // socket.on('c_leave',function(msg){
     //     alert(msg)
