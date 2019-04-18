@@ -36,7 +36,11 @@
     var socket = io.connect('http://3000.grcb2295.l3xy9scq.e2ea52.grapps.cn/'),//与服务器进行连接
         send = document.getElementById('sendBtn'),
         leave = document.getElementById('leaveBtn'),
-        data = { 'roomId': "123456" };
+        data = {
+            'roomId': "123456",
+            'meetingID': 434343
+        };
+    data.test = 'dfdfdf';
 
     send.onclick = function () {
         socket.emit('hi', data);
