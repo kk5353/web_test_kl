@@ -4,22 +4,22 @@ module.exports = function (io) {
     // 分发user模块，比如用户的注册和登录请求业务逻辑将会在/api/user.js中实现
 
     io.on('connection', function (socket) {
-        
+
         //接收并处理客户端的hi事件
         socket.on('hi', function (data) {
             console.log(data);
 
             //触发客户端事件c_hi
             socket.join(data.roomId);
-            io.sockets.in(data.roomId).emit('c_hi', 'hel000l!');
+            io.sockets.in(data.roomId).emit('c_hi', data);
 
-            MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+            MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
                 if (err) throw err;
                 var dbo = db.db("runoob");
-                var myobj =  [
-                    { name: '短消息', content:data.roomId, type: 'cn'}
-                   ];
-                dbo.collection("site").insertMany(myobj, function(err, res) {
+                var myobj = [
+                    { name: '短消息', content: data, type: 'cn' }
+                ];
+                dbo.collection("site").insertMany(myobj, function (err, res) {
                     if (err) throw err;
                     console.log("插入的文档数量为: " + res.insertedCount);
                     db.close();
