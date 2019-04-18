@@ -11,7 +11,7 @@ module.exports = function (io) {
 
             //触发客户端事件c_hi
             socket.join(data.roomId);
-            io.sockets.in(data.roomId).emit('c_hi', data);
+            io.sockets.in(data.roomId).emit('c_hi', JSON.stringify(data));
 
             MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
                 if (err) throw err;
