@@ -8,18 +8,20 @@
 <body>
 
 
-<br><br>
+    <br><br>
 
-<style>
-    .t { overflow: hidden; }
-</style>
-<textarea cols="200" rows="5" class="t" id="content"></textarea>
+    <style>
+        .t {
+            overflow: hidden;
+        }
+    </style>
+    <textarea cols="200" rows="5" class="t" id="content"></textarea>
 
 
 
 
 
-   <button id="sendBtn">发送消息</button>
+    <button id="sendBtn">发送消息</button>
 
     <button id="leaveBtn">画图测试按钮</button>
 
@@ -37,19 +39,19 @@
 
 
 <script type="text/javascript">
-    // var socket = io.connect('http://127.0.0.1:3000/'),//与服务器进行连接http://3000.grcb2295.l3xy9scq.e2ea52.grapps.cn/
-    var socket = io.connect('http://3000.grcb2295.l3xy9scq.e2ea52.grapps.cn/'),//与服务器进行连接
+    var socket = io.connect('http://127.0.0.1:3000/'),//与服务器进行连接http://3000.grcb2295.l3xy9scq.e2ea52.grapps.cn/
+        // var socket = io.connect('http://3000.grcb2295.l3xy9scq.e2ea52.grapps.cn/'),//与服务器进行连接
         send = document.getElementById('sendBtn'),
         leave = document.getElementById('leaveBtn'),
-        text=document.getElementById('text'),
-        chating=document.getElementById('chating'),
-        content=document.getElementById('content').value;
+        text = document.getElementById('text'),
+        chating = document.getElementById('chating'),
+        content = document.getElementById('content').value;
 
-        data = {
-            'roomId': "123456",
-            'meetingID': 434343
-        };
-    data.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTY0OTY2ODAsImV4cCI6MTU1NjUzMjY4MH0.ZSBAfX7FlIPnq60M6H7Ne9UUsb6CIEQQi3NBTlROp4Q";
+    data = {
+        'roomId': "123456",
+        'meetingID': 434343
+    };
+    data.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTY2MDg4MDEsImV4cCI6MTU1NjY0NDgwMX0.Z7HZ-6ITiLdAWLVIm0oyJnt14pfOFHGlcJyUwVT_Ux8";
 
     send.onclick = function () {
         socket.emit('hi', data);
@@ -57,12 +59,12 @@
 
     leave.onclick = function () {
 
-        datadata={
-            'mid':123,
-            'token':'ey1JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTU5MTgyMzYsImV4cCI6MTU1NTk1NDIzNn0.xZIOOVTTYYn4h-HmFYoY0iUs3nP-OQ99Aci4b6-P0T0',
-            'data':{
-                'e':1,
-                'ff':23234
+        datadata = {
+            'mid': 123,
+            'token': 'ey1JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTU5MTgyMzYsImV4cCI6MTU1NTk1NDIzNn0.xZIOOVTTYYn4h-HmFYoY0iUs3nP-OQ99Aci4b6-P0T0',
+            'data': {
+                'e': 1,
+                'ff': 23234
             }
         }
         socket.emit('drawing', datadata);
@@ -70,12 +72,12 @@
 
     text.onclick = function () {
 
-        datadata={
-            'mid':123,
-            'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTU5MTgyMzYsImV4cCI6MTU1NTk1NDIzNn0.xZIOOVTTYYn4h-HmFYoY0iUs3nP-OQ99Aci4b6-P0T0',
-            'data':{
-                'e':1,
-                'ff':23234
+        datadata = {
+            'mid': 123,
+            'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTU5MTgyMzYsImV4cCI6MTU1NTk1NDIzNn0.xZIOOVTTYYn4h-HmFYoY0iUs3nP-OQ99Aci4b6-P0T0',
+            'data': {
+                'e': 1,
+                'ff': 23234
             }
         }
         socket.emit('editing', datadata);
@@ -84,15 +86,15 @@
 
     chating.onclick = function () {
 
-        datadata={
-            'mid':123,
-            'token':data.token,
-            'to':56,
-            'content':document.getElementById('content').value
+        datadata = {
+            'mid': 123,
+            'token': data.token,
+            'to': 56,
+            'content': document.getElementById('content').value
 
         }
         socket.emit('chating', datadata);
-}
+    }
 
 
 
@@ -104,11 +106,11 @@
 
     socket.on('editing', function (msg) {
 
-        alert(JSON.stringify( msg)+'editing')
+        alert(JSON.stringify(msg) + 'editing')
     })
     //接收来自服务端的信息事件c_hi
     socket.on('drawing', function (msg) {
-        alert(JSON.stringify( msg)+'drawing')
+        alert(JSON.stringify(msg) + 'drawing')
     })
 
 
@@ -116,7 +118,7 @@
     socket.on('chating', function (msg) {
         // alert(JSON.stringify( msg)+'chating')
 
-        document.getElementById('content').value=msg;
+        document.getElementById('content').value = JSON.stringify(msg);
 
     })
 
