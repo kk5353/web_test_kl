@@ -51,7 +51,7 @@
         'roomId': "123456",
         'meetingID': 434343
     };
-    data.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTY2MDg4MDEsImV4cCI6MTU1NjY0NDgwMX0.Z7HZ-6ITiLdAWLVIm0oyJnt14pfOFHGlcJyUwVT_Ux8";
+    data.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjI4LCJpYXQiOjE1NTcxMTYzMzMsImV4cCI6MTU1NzQ3NjMzM30.FuaiEA9zLmLlH5mNyIsXiWDHeo3PNoCX0tvDQGxy4Z4";
 
     send.onclick = function () {
         socket.emit('hi', data);
@@ -116,7 +116,8 @@
 
     //接收来自服务端的信息事件c_hi
     socket.on('chating', function (msg) {
-        // alert(JSON.stringify( msg)+'chating')
+        
+        alert(JSON.stringify( msg)+'chating')
 
         document.getElementById('content').value = JSON.stringify(msg);
 
